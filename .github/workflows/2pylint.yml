@@ -1,0 +1,39 @@
+name: Pylint
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.9", "3.10"]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install --no-cache-dir -r requirements.txt pylint
+
+      - name: Run Pylint and report score
+        run: |
+          # Run Pylint and capture output (ignore exit code)
+          pylint_output=$(pylint $(git ls-files '*.py') || true)
+          echo "$pylint_output"
+
+          # Extract numeric score
+          score=$(echo "$pylint_output" | grep "Your code has been rated at" | awk '{print $7}' | cut -d'/' -f1)
+          echo "Pylint score: $score"
+
+          # Optional warning if below 9
+          awk -v score="$score" 'BEGIN { if (score < 9) print "⚠️ Pylint score below 9"; }'
