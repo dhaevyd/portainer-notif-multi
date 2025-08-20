@@ -23,8 +23,8 @@ A simple Python script running in Docker that listens for Docker container **sta
 1. Clone this repository
 
 ```bash
-git clone https://github.com/yourusername/portainer-notif.git
-cd portainer-notif
+git clone https://github.com/yourusername/portainer-notif-multi.git
+cd portainer-notif-multi
 ```
 
 2. Copy the example environment file, update your details, and rename it to `.env`:
