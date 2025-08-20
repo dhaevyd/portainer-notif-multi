@@ -1,4 +1,4 @@
-## Version History for Portainer Notification Assistant
+## Version History for Portainer Multi-Node Notification Assistant
 
 ### :1.1.0
 
@@ -28,7 +28,7 @@
 * Functional: Enhanced detection for new, removed, and status-changed containers.
 * Cosmetic: Added graceful shutdown on SIGINT and SIGTERM signals.
 * Cosmetic: Added clearer info and error log messages with prefixes.
-* Structural: Removed multi-threaded event listeners in favor of a simpler single-thread polling loop.
+* Structural: Removed multi-threaded event listeners in favour of a simpler single-thread polling loop.
 * Added timeout and error handling for API calls.
 
 ### :1.4.0
@@ -68,15 +68,15 @@
 
 ### :3.0.1
 
-Functional: Added endpoint health monitoring to track the availability status of each Portainer endpoint/agent node.
-Functional: Implemented real-time notifications for endpoint connectivity changes (🔴 DOWN, 🟢 RECOVERED, ❌ REMOVED).
-Functional: Enhanced container fetching to return both container data and endpoint health status in a single operation.
-Functional: Added persistent endpoint health tracking with the endpoint_health.json file to maintain state between restarts.
-Functional: Prevented false "container removed" notifications when endpoints become unreachable by filtering out containers from unhealthy endpoints.
-Functional: Modified detect_changes() to accept endpoint health data and exclude containers on down nodes from removal detection.
-Functional: Added the detect_endpoint_changes() function to compare previous and current endpoint health states.
-Functional: Enhanced error handling in get_all_containers() to gracefully mark endpoints as unhealthy when API calls fail.
-Structural: Separated endpoint health persistence from container state persistence for cleaner data management.
-Cosmetic: Added distinct emoji indicators for endpoint status changes (🔴/🟢) versus container changes (🆕/✅/🔄/❌).
-Improved monitoring reliability by distinguishing between actual container removal and temporary endpoint unavailability.
+* Functional: Added endpoint health monitoring to track the availability status of each Portainer endpoint/agent node.
+* Functional: Implemented real-time notifications for endpoint connectivity changes (🔴 DOWN, 🟢 RECOVERED, ❌ REMOVED).
+* Functional: Enhanced container fetching to return both container data and endpoint health status in a single operation.
+* Functional: Added persistent endpoint health tracking with the endpoint_health.json file to maintain state between restarts.
+* Functional: Prevented false "container removed" notifications when endpoints become unreachable by filtering out containers from unhealthy endpoints.
+* Functional: Modified detect_changes() to accept endpoint health data and exclude containers on down nodes from removal detection.
+* Functional: Added the detect_endpoint_changes() function to compare previous and current endpoint health states.
+* Functional: Enhanced error handling in get_all_containers() to gracefully mark endpoints as unhealthy when API calls fail.
+* Structural: Separated endpoint health persistence from container state persistence for cleaner data management.
+* Cosmetic: Added distinct emoji indicators for endpoint status changes (🔴/🟢) versus container changes (🆕/✅/🔄/❌).
+* Improved monitoring reliability by distinguishing between actual container removal and temporary endpoint unavailability.
 ---
