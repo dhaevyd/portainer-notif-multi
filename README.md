@@ -63,7 +63,7 @@ docker compose up -d
 - `PORTAINER_API_KEY` — API key for Portainer authentication (alternative to username/password).
 
 - `HOSTNAME` — *Optional.* Friendly node name to identify your server in notifications (e.g., `d4rkcyber`).
-- `DISCORD_WEBHOOK` — Alternative webhook URL for Discord notifications (if different from `WEBHOOK_URL`).
+- `DISCORD_WEBHOOK` — Alternative webhook URL for Discord notifications, compare with compose file (if different from `WEBHOOK_URL`).
 - `PORTAINER_API_URL` — Alternative Portainer API URL environment variable (optional override).
 - `LOG_LEVEL` — Log verbosity level (default: `info`, options include `debug`, `warn`, `error`).
 
@@ -72,25 +72,14 @@ docker compose up -d
 
 ---
 
-## License
-
-MIT License
-
----
-
-## Author
-
-David Dami
-
----
-
 ## Version History
 
-| Version | Date       | Description                                                                                     |
-| ------- | ---------- | ----------------------------------------------------------------------------------------------- |
-| 1.0.0   | 2024-xx-xx | Initial release: Listens for stopped containers and sends container ID to Discord webhook.      |
-| 1.1.0   | 2024-xx-xx | On start, checks all containers with state != "running" and sends node name and container info. |
-| 1.2.0   | 2024-xx-xx | Added optional `NODE_NAME` env var to customize node name in webhook payload delivery.          |
+| Version | Description                                                                                     |
+| ------- | ----------------------------------------------------------------------------------------------- |
+| 1.0.0   | Initial release: Listens for stopped containers and sends container ID to Discord webhook.      |
+| 1.1.0   | On start, checks all containers with state != "running" and sends node name and container info. |
+| 1.2.0   | Added optional `NODE_NAME` env var to customize node name in webhook payload delivery.          |
+| 3.0.1   | Updated code to handle ENDPOINT failures more gracefully with notifications.                    |
 
 ---
 
@@ -100,14 +89,12 @@ David Dami
 
 ---
 
-
-WEBHOOK_URL
+ENV_FILE:
+WEBHOOK_URL=
 PORTAINER_URL=https://portainer:9000/api
 PORTAINER_USERNAME=
 PORTAINER_PASSWORD=
-PORTAINER_API_KEY="key"
-
-# Optional: friendly node name to identify your server in messages
+PORTAINER_API_KEY="portainer_api_key"
 HOSTNAME=d4rkcyber
 DISCORD_WEBHOOK=
 PORTAINER_API_URL=
