@@ -72,23 +72,6 @@ docker compose up -d
 
 ---
 
-## Version History
-
-| Version | Description                                                                                     |
-| ------- | ----------------------------------------------------------------------------------------------- |
-| 1.0.0   | Initial release: Listens for stopped containers and sends container ID to Discord webhook.      |
-| 1.1.0   | On start, checks all containers with state != "running" and sends node name and container info. |
-| 1.2.0   | Added optional `NODE_NAME` env var to customize node name in webhook payload delivery.          |
-| 3.0.1   | Updated code to handle ENDPOINT failures more gracefully with notifications.                    |
-
----
-
-## Build Status
-
-![Build Status](https://img.shields.io/github/actions/workflow/status/yourusername/portainer-notif/ci.yml?branch=main)
-
----
-
 ENV_FILE:
 WEBHOOK_URL=
 PORTAINER_URL=https://portainer:9000/api
