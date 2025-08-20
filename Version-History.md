@@ -61,9 +61,22 @@
 * Functional: Made memory load/save more fault-tolerant by ignoring read/write errors silently.
 * Functional: Simplified container fetching logic with list/dict comprehensions, default fallbacks, and safer `.get()` calls.
 * Functional: Improved restart detection by mapping container names to multiple old IDs.
-* Functional: Initial run now sends notifications only for non-running containers; all other changes detected on subsequent runs.
+* Functional: Initial run now sends notifications only for non-running containers; all other changes are detected on subsequent runs.
 * Cosmetic: Removed most logging except warnings and essential info to reduce noise.
 * Structural: Maintained memory-based change detection and endpoint grouping for notifications.
 * Improved overall robustness and error tolerance for real-world network/API failures.
 
+### :3.0.1
+
+Functional: Added endpoint health monitoring to track the availability status of each Portainer endpoint/agent node.
+Functional: Implemented real-time notifications for endpoint connectivity changes (🔴 DOWN, 🟢 RECOVERED, ❌ REMOVED).
+Functional: Enhanced container fetching to return both container data and endpoint health status in a single operation.
+Functional: Added persistent endpoint health tracking with the endpoint_health.json file to maintain state between restarts.
+Functional: Prevented false "container removed" notifications when endpoints become unreachable by filtering out containers from unhealthy endpoints.
+Functional: Modified detect_changes() to accept endpoint health data and exclude containers on down nodes from removal detection.
+Functional: Added the detect_endpoint_changes() function to compare previous and current endpoint health states.
+Functional: Enhanced error handling in get_all_containers() to gracefully mark endpoints as unhealthy when API calls fail.
+Structural: Separated endpoint health persistence from container state persistence for cleaner data management.
+Cosmetic: Added distinct emoji indicators for endpoint status changes (🔴/🟢) versus container changes (🆕/✅/🔄/❌).
+Improved monitoring reliability by distinguishing between actual container removal and temporary endpoint unavailability.
 ---
